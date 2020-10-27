@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Quickstow</title>
+	<script type="text/javascript" src="eel.js"></script>
+	<script type="text/javascript" src="jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div id="main">
+		<div id="logo">
+			<img src="img/logo.png" id="logo_img">
+		</div>
+
+		<div id="folder_path_section">
+			<div id="folder_path_title">Save a Folder Path</div>
+			<div id="folder_path_main_section">
+				<div id="folder_path_icon_section">
+					<div id="folder_icon">
+						<img src="img/folder_icon.png" id="folder_icon_png">
+					</div>
+				</div>
+				<div id="folder_path_input_section">
+					<div id="folder_path_input_div">
+						<input id="folder_path_input" class="drag_zone" value=" Path to the folder"></input>
+
+						<!--<script type="text/javascript">
+							var dropzone = document.getElementById("folder_path_input")
+
+							dropzone.ondragover = function() {
+								this.className = "drag_zone_on"
+								return false;
+							}
+
+							dropzone.ondragleave = function() {
+								this.className = "drag_zone"
+								return false;
+							}
+						</script>-->
+
+					</div>
+					<div id="plus_icon_div">
+							<img src="img/plus_icon.png" id="plus_icon">
+						</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="file_path_section">
+			<div id="file_path_title">File to Stow</div>
+			<div id="file_path_main_section">
+				<div id="file_path_icon_section">
+					<div id="file_icon">
+						<img src="img/file_icon.png" id="file_icon_png">
+					</div>
+				</div>
+				<div id="file_path_input_section">
+					<div id="folder_path_input_div">
+						<input id="file_path_input" class="drag_zone" value=" Users/YourName/Downloads/file"></input>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="buttons_section" >
+			<div id="moveto_button">
+				<div id="moveto_button_text">
+					MOVE To
+				</div>
+				<div id="select_path">
+					&#8593;	
+				</div>
+				<div id="paths_list">
+					<div id="paths_list_title">
+						<div id="paths_list_subtitle">
+							Saved Paths	
+						</div>
+					</div>
+
+					<div id="paths"> 
+					</div>
+				</div>
+			</div>	
+
+			<div id="move_button">
+				<div id="move_button_text">
+					MOVE
+				</div>
+			</div>	
+		</div>
+	</div>
+</body>
+</html>
