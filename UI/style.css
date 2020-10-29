@@ -304,7 +304,9 @@ html, body
 	position: absolute;
 	margin: 0 0 130% 0;
 	border-radius: 10px 10px 0% 0%;
+	overflow-y: scroll;
 }
+
 
 #paths_list_title
 {

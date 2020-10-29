@@ -5,7 +5,9 @@ $(document).ready(function(){
 function main(){
 	moveto_button_hover()
 	moveto_button_click()
+	plus_icon_click("plus_icon")
 	move_button_click("move_button")
+	fill_the_paths_list("paths")
 }
 
 function moveto_button_hover(){
@@ -48,5 +50,42 @@ function move_button_click(id){
 			alert("Please fill the fields.")
 		}
 	})	
+}
+
+function fill_the_paths_list(parent_id){
+	var test_array = ["Hayk", "Mash", "Vahag", "Lusine", "Ruzan", "Tyom", "Star"]
+	for (i in test_array){
+		$("<div id=path_" + test_array[i] + " > " + test_array[i] + " </div>").appendTo("#" + parent_id)
+		style_for_elements_in_paths_list("path_" + test_array[i])
+	}
+}
+
+function style_for_elements_in_paths_list(id){
+	$("#" + id).css({
+		"width" : "100%",
+		"height" : "30px",
+		"font-size" : "60%",
+		"text-align" : "center",
+		"padding" : "5% 0 0 0",
+		"border-bottom" : "1px solid #5086D8",
+	})
+	
+	$("#" + id).mouseenter(function(){
+		$(this).css({
+			"background-color" : "#515151"
+		})
+	})
+
+	$("#" + id).mouseleave(function(){
+		$(this).css({
+			"background-color" : "#212121"
+		})
+	})
+}
+
+function plus_icon_click(id){
+	$("#" + id).click(function(){
+		alert("plus")
+	})
 }
 
