@@ -53,7 +53,7 @@ function move_button_click(id){
 }
 
 function fill_the_paths_list(parent_id){
-	var test_array = ["Hayk", "Mash", "Vahag", "Lusine", "Ruzan", "Tyom", "Star"]
+	var test_array = ["Hayk", "Mash", "Vahag", "Lusine", "Ruzan", "Tyom", "Star", "Pso"]
 	for (i in test_array){
 		$("<div id=path_" + test_array[i] + " > " + test_array[i] + " </div>").appendTo("#" + parent_id)
 		style_for_elements_in_paths_list("path_" + test_array[i])
