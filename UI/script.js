@@ -8,6 +8,7 @@ function main(){
 	plus_icon_click("plus_icon")
 	move_button_click("move_button")
 	fill_the_paths_list("paths")
+	save_button_click("add_new_path_window_save_button")
 }
 
 function moveto_button_hover(){
@@ -84,8 +85,31 @@ function style_for_elements_in_paths_list(id){
 }
 
 function plus_icon_click(id){
+	$("#add_new_path_window").hide()
 	$("#" + id).click(function(){
-		alert("plus")
+		var path = $("#folder_path_input").val()
+		if (path == ""){
+			alert("Please fill the fields")
+		}
+		else{
+			eel.path_is_valid(path)(function(return_value){
+				if (return_value){
+					$("#add_new_path_window").slideDown(50)
+					$("#add_new_path_window_close_button").click(function(){
+						$("#add_new_path_window").slideUp(50)
+					})
+				}
+				else{
+					alert("Invalid folder path")
+				}
+			})
+		}
+	})
+}
+
+function save_button_click(id){
+	$("#" + id).click(function(){
+		alert("Nothing happened")
 	})
 }
 

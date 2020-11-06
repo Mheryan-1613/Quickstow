@@ -8,6 +8,7 @@ html, body
 	flex-direction: column;
 	font-family: 'Roboto', sans-serif;
 	display: flex;
+	overflow: none;
 }
 
 #logo
@@ -132,7 +133,7 @@ html, body
 #plus_icon_div:hover
 {
 	box-shadow: 0px 2px 5px;
-	transform: translate(0%, -2%);
+	'transform: translate(0%, -2%);'
 
 }
 #plus_icon_div:active
@@ -331,4 +332,60 @@ html, body
 	transition: 0.1s;
 	transform:translate(0px , 2px);
 	height: 45px;
+}
+
+#add_new_path_window
+{
+	width: 79%;
+	height: 80px;
+	background-color: #212121;
+	position: absolute;
+	display: flex;
+	border: 1px solid black;
+}
+
+#add_new_path_window_title
+{
+	background-color: #D4D4D4;
+	width: 15%;
+	height:32%;
+	margin: 25px 0 0 0;
+	border-radius: 0 5px 5px 0;
+	text-align: center;
+	padding: 4px 0 0 0;
+}
+
+#add_new_path_window_input
+{	
+	height: 30%;
+    width: 55%;
+    background-color: #484848;
+    border: 1px solid #000000;
+    margin: 25px 0 0 15px;
+    align-items: center;
+    display: flex;
+	outline: none;
+	border-radius: 3px;
+}
+
+#add_new_path_window_save_button
+{
+	width: 12%;
+	height: 40%;
+	background-color: yellow;
+	border-radius: 3px;
+	cursor: pointer;
+	margin: 17px 0 0 10px;
+	padding: 10px 0 0 8px;
+	font-size: 18px;
+}
+
+#add_new_path_window_close_button
+{
+	border-radius: 30px;
+	background-color: red;
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+	margin: 5px 0 0 10px;
 }

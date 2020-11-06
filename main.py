@@ -1,6 +1,8 @@
 import eel
 import shutil
 import pickle
+import os.path
+from os import path
 
 # Import the interface files into the code
 eel.init("UI")
@@ -21,7 +23,13 @@ def read_data():
 	pickle_in = open("saved_paths.pickle", "rb")
 	saved_paths = pickle.load(pickle_in)
 	print (saved_paths)
-	
+
+@eel.expose
+def path_is_valid(path):
+	if os.path.isdir(path):
+		return True
+	else:
+		return False
 
 # Start the window with UI 
 eel.start("ui.html", size=(500, 500), port=(8081))
