@@ -7,7 +7,6 @@ function main(){
 	moveto_button_click()
 	plus_icon_click("plus_icon")
 	move_button_click("move_button")
-	fill_the_paths_list("paths")
 	save_button_click("add_new_path_window_save_button")
 }
 
@@ -33,8 +32,16 @@ function moveto_button_click(){
 	$("#moveto_button").click(function(){
 		if ( $("#paths_list").is(":hidden") ) {
 			$("#paths_list").slideDown(200)
+			eel.read_data()(function(data){
+				var array = []
+				for (key in data){
+					array.push(data[key]["name"])
+				}
+				fill_the_paths_list("paths", array)
+			})
   		} else{
 			$("#paths_list").slideUp(200)
+			$("#paths").empty()
 		}
 	})
 }
@@ -44,20 +51,20 @@ function move_button_click(id){
 		let folder_path_value = $("#folder_path_input").val()
 		let file_path_value = $("#file_path_input").val()
 		if (folder_path_value !== "" && file_path_value !== ""){
-			eel.button_function(folder_path_value, file_path_value)(function(return_value){
+			eel.move_button_function(folder_path_value, file_path_value)(function(return_value){
 				alert(return_value)
 			})
-		}else{
+		} else{
 			alert("Please fill the fields.")
 		}
 	})	
 }
 
-function fill_the_paths_list(parent_id){
-	var test_array = ["Hayk", "Mash", "Vahag", "Lusine", "Ruzan", "Tyom", "Star", "Pso"]
-	for (i in test_array){
-		$("<div id=path_" + test_array[i] + " > " + test_array[i] + " </div>").appendTo("#" + parent_id)
-		style_for_elements_in_paths_list("path_" + test_array[i])
+function fill_the_paths_list(parent_id, array){
+	for (i in array){
+		key = replace_spaces(array[i])
+		$("<div id=path_" + array[key] + " > " + array[i] + " </div>").appendTo("#" + parent_id)
+		style_for_elements_in_paths_list("path_" + array[key])
 	}
 }
 
@@ -109,7 +116,30 @@ function plus_icon_click(id){
 
 function save_button_click(id){
 	$("#" + id).click(function(){
-		alert("Nothing happened")
+		var path = $("#folder_path_input").val()
+		var name = $("#add_new_path_window_input").val()
+		if (name == ""){
+			alert("Please fill the fields")
+		} else{
+			var idname = replace_spaces(name)
+			alert(idname)
+			alert(path)
+			alert(name)
+			var object = {}
+			object[idname] = {
+				"name" : name ,
+				"path" : path ,
+			}
+			console.log(object)
+			eel.save_data(object)(function(){
+				alert("Completed!")
+			})
+			$("#add_new_path_window").slideUp(50)
+		}
 	})
 }
 
+function replace_spaces(variable){
+	variable = variable.split(' ').join('_');
+	return variable
+}
