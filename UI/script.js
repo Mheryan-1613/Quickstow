@@ -32,12 +32,12 @@ function moveto_button_click(){
 	$("#moveto_button").click(function(){
 		if ( $("#paths_list").is(":hidden") ) {
 			$("#paths_list").slideDown(200)
-			eel.read_data()(function(data){
-				var array = []
-				for (key in data){
-					array.push(data[key]["name"])
+			eel.Load()(function(data){
+				var names_array = []
+				for (id in data){
+					names_array.push(data[id]["name"])
 				}
-				fill_the_paths_list("paths", array)
+				fill_the_paths_list("paths", names_array)
 			})
   		} else{
 			$("#paths_list").slideUp(200)
@@ -63,8 +63,8 @@ function move_button_click(id){
 function fill_the_paths_list(parent_id, array){
 	for (i in array){
 		key = replace_spaces(array[i])
-		$("<div id=path_" + array[key] + " > " + array[i] + " </div>").appendTo("#" + parent_id)
-		style_for_elements_in_paths_list("path_" + array[key])
+		$("<div id=path_" + key + " > " + array[i] + " </div>").appendTo("#" + parent_id)
+		style_for_elements_in_paths_list("path_" + key)
 	}
 }
 
@@ -122,7 +122,6 @@ function save_button_click(id){
 			alert("Please fill the fields")
 		} else{
 			var idname = replace_spaces(name)
-			alert(idname)
 			alert(path)
 			alert(name)
 			var object = {}

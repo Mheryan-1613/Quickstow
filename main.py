@@ -14,7 +14,7 @@ def move_button_function(folder_path, file_path):
 
 @eel.expose
 def save_data(data):
-	pickle_out = open("saved_paths.pickle", "wb")
+	pickle_out = open("saved_paths.pickle", "ab")
 	pickle.dump(data, pickle_out)
 	print ("Data received")
 	print("--------")
@@ -22,18 +22,23 @@ def save_data(data):
 	pickle_out.close()
 
 @eel.expose
-def read_data():
-	pickle_in = open("saved_paths.pickle", "rb")
-	saved_paths = pickle.load(pickle_in)
-	print ("Data sent")
-	print("--------")
-	print(saved_paths)
-	return (saved_paths)
-
-@eel.expose
 def path_is_valid(path):
 	result = os.path.isdir(path)
 	return result
 
+@eel.expose
+def Load():
+    data = {}
+    with open('saved_paths.pickle', 'rb') as file:
+        while True:
+            try:
+                results = pickle.load(file)
+            except EOFError:
+                break
+            else:
+                data.update(results)
+    return (data)
+
+print("Starting eel...")
 # Start the window with UI 
 eel.start("ui.html", size=(500, 500), port=(8081))
