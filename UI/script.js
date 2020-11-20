@@ -63,19 +63,40 @@ function move_button_click(id){
 function fill_the_paths_list(parent_id, array){
 	for (i in array){
 		key = replace_spaces(array[i])
-		$("<div id=path_" + key + " > " + array[i] + " </div>").appendTo("#" + parent_id)
-		style_for_elements_in_paths_list("path_" + key)
+		x_button = "close_button_" + key
+		$("<div id=path_" + key + " ></div>").appendTo("#" + parent_id)
+		$("<div id=text_path_" + key + ">" + array[i] + "</div>").appendTo("#path_" + key)
+		$("<div id=" + x_button + ">x</div>").appendTo("#path_" + key)
+		saved_path_delete_button_click(x_button, "path_" + key)
+		style_for_elements_in_paths_list("path_" + key, x_button, "text_path_" + key)
 	}
 }
 
-function style_for_elements_in_paths_list(id){
+function style_for_elements_in_paths_list(id, x_button_id, text_div_id){
 	$("#" + id).css({
 		"width" : "100%",
 		"height" : "30px",
 		"font-size" : "60%",
 		"text-align" : "center",
-		"padding" : "5% 0 0 0",
 		"border-bottom" : "1px solid #5086D8",
+		"padding" : "6% 0 0 0",
+		"flex-direction" : "row",
+		"display" : "flex",
+	})
+
+	$("#" + text_div_id).css({
+		"height" : "100%",
+		"width" : "88%"
+	})
+
+	$("#" + x_button).css({
+		"width" : "12%",
+		"height" : "60%",
+		"text-align" : "center",
+		"border" : "1px solid black",
+		"background-color" : "grey",
+		"margin" : "0 7% 0 8%",
+		"cursor" : "pointer",
 	})
 	
 	$("#" + id).mouseenter(function(){
@@ -135,6 +156,12 @@ function save_button_click(id){
 			})
 			$("#add_new_path_window").slideUp(50)
 		}
+	})
+}
+
+function saved_path_delete_button_click(id, path_div_id){
+	$("#" + id).click(function(){
+		alert(path_div_id)
 	})
 }
 
