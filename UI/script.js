@@ -33,9 +33,12 @@ function moveto_button_click(){
 		if ( $("#paths_list").is(":hidden") ) {
 			$("#paths_list").slideDown(200)
 			eel.Load()(function(data){
+				console.log(data)
 				var names_array = []
 				for (id in data){
-					names_array.push(data[id]["name"])
+					if (data[id]["is_deleted"] == false){
+						names_array.push(data[id]["name"])
+					}
 				}
 				fill_the_paths_list("paths", names_array)
 			})
@@ -67,7 +70,7 @@ function fill_the_paths_list(parent_id, array){
 		$("<div id=path_" + key + " ></div>").appendTo("#" + parent_id)
 		$("<div id=text_path_" + key + ">" + array[i] + "</div>").appendTo("#path_" + key)
 		$("<div id=" + x_button + ">x</div>").appendTo("#path_" + key)
-		saved_path_delete_button_click(x_button, "path_" + key)
+		saved_path_delete_button_click(x_button, "path_" + key, key)
 		style_for_elements_in_paths_list("path_" + key, x_button, "text_path_" + key)
 	}
 }
@@ -143,12 +146,16 @@ function save_button_click(id){
 			alert("Please fill the fields")
 		} else{
 			var idname = replace_spaces(name)
+			if(name_is_free(idname)){
+				alert("bomkara")
+			}
 			alert(path)
 			alert(name)
 			var object = {}
 			object[idname] = {
 				"name" : name ,
 				"path" : path ,
+				"is_deleted" : false
 			}
 			console.log(object)
 			eel.save_data(object)(function(){
@@ -159,13 +166,38 @@ function save_button_click(id){
 	})
 }
 
-function saved_path_delete_button_click(id, path_div_id){
+function saved_path_delete_button_click(id, path_div_id, data_id){
 	$("#" + id).click(function(){
+		$("#" + path_div_id).remove()
 		alert(path_div_id)
+		eel.Load()(function(data){
+			for (for_id in data){
+				if (for_id == data_id){
+					var data = {}
+					data[data_id] = {
+						"is_deleted" : true
+					}
+					eel.save_data(data)
+				}
+			}
+		})
 	})
 }
 
 function replace_spaces(variable){
 	variable = variable.split(' ').join('_');
 	return variable
+}
+
+function name_is_free(name){
+	eel.Load()(function(data){
+		var result = true
+		for (test in data){
+			if (test == name){
+				result = false
+			}
+		}
+		console.log (result)
+		return result
+	})
 }

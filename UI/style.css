@@ -8,7 +8,7 @@ html, body
 	flex-direction: column;
 	font-family: 'Roboto', sans-serif;
 	display: flex;
-	overflow: none;
+	overflow: hidden;
 }
 
 #logo

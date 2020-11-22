@@ -22,11 +22,6 @@ def save_data(data):
 	pickle_out.close()
 
 @eel.expose
-def path_is_valid(path):
-	result = os.path.isdir(path)
-	return result
-
-@eel.expose
 def Load():
     data = {}
     with open('saved_paths.pickle', 'rb') as file:
@@ -38,6 +33,11 @@ def Load():
             else:
                 data.update(results)
     return (data)
+
+@eel.expose
+def path_is_valid(path):
+	result = os.path.isdir(path)
+	return result
 
 print("Starting eel...")
 # Start the window with UI 
