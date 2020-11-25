@@ -9,8 +9,19 @@ eel.init("UI")
 
 @eel.expose
 def move_button_function(folder_path, file_path):
-	shutil.move(file_path, folder_path)
-	return ("File moved successfully.")
+	try:
+		shutil.move(file_path, folder_path)
+		result = "File moved successfully."
+		print (file_path)
+		print ("MOVED TO")
+		print (folder_path)
+		return (result)
+	except IOError as e:
+		print("Error arrived!")
+		result = "File is not located."
+		return (result)
+
+	
 
 @eel.expose
 def save_data(data):

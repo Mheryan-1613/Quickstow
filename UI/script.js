@@ -10,6 +10,8 @@ function main(){
 	save_button_click("add_new_path_window_save_button")
 }
 
+var SELECTED_PATH = ""
+
 function moveto_button_hover(){
 	$("#moveto_button").mouseenter(function(){
 		$("#select_path").css({
@@ -50,7 +52,7 @@ function moveto_button_click(){
 
 function move_button_click(id){
 	$("#" + id).click(function(){
-		let folder_path_value = $("#folder_path_input").val()
+		let folder_path_value = SELECTED_PATH
 		let file_path_value = $("#file_path_input").val()
 		if (folder_path_value !== "" && file_path_value !== ""){
 			eel.move_button_function(folder_path_value, file_path_value)(function(return_value){
@@ -115,6 +117,18 @@ function style_for_elements_in_paths_list(id, x_button_id, text_div_id){
 	})
 }
 
+function make_the_input_red(id){
+	$("#" + id).css({
+		"border" : "1px solid red"
+	})
+}
+
+function make_the_input_back_to_normal(id){
+	$("#" + id).css({
+		"border" : "1px solid #000000"
+	})
+}
+
 function plus_icon_click(id){
 	$("#add_new_path_window").hide()
 	$("#" + id).click(function(){
@@ -128,10 +142,12 @@ function plus_icon_click(id){
 					$("#add_new_path_window").slideDown(50)
 					$("#add_new_path_window_close_button").click(function(){
 						$("#add_new_path_window").slideUp(50)
+						make_the_input_back_to_normal("folder_path_input")
 					})
 				}
 				else{
 					alert("Invalid folder path")
+					make_the_input_red("folder_path_input")
 				}
 			})
 		}
@@ -154,8 +170,6 @@ function save_button_click(id){
 					}
 				}
 				if (result){
-					alert(path)
-					alert(name)
 					var object = {}
 					object[idname] = {
 						"name" : name ,
@@ -177,7 +191,6 @@ function save_button_click(id){
 
 function saved_path_delete_button_click(id, path_div_id, data_id){
 	$("#" + id).click(function(){
-		alert(path_div_id)
 		if (confirm("are you sure?")){
 			eel.Load()(function(data){
 				for (for_id in data){
@@ -205,7 +218,8 @@ function path_select_click(div_id, id){
 			eel.Load()(function(data){
 				for (loop_id in data){
 					if (loop_id == id){
-						console.log(data[loop_id]["path"])
+						SELECTED_PATH = data[loop_id]["path"]
+						alert("You just selected: " + SELECTED_PATH)
 					}
 				}
 			})
