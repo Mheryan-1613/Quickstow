@@ -17,7 +17,7 @@ def move_button_function(folder_path, file_path):
 		print (folder_path)
 		return (result)
 	except IOError as e:
-		print("Error arrived!")
+		print("Error!")
 		result = "File is not located."
 		return (result)
 

@@ -35,6 +35,7 @@ function moveto_button_click(){
 		if ( $("#paths_list").is(":hidden") ) {
 			$("#paths_list").slideDown(200)
 			eel.Load()(function(data){
+				console.log(data)
 				var names_array = []
 				for (id in data){
 					if (data[id]["is_deleted"] == false){
@@ -146,7 +147,6 @@ function plus_icon_click(id){
 					})
 				}
 				else{
-					alert("Invalid folder path")
 					make_the_input_red("folder_path_input")
 				}
 			})
