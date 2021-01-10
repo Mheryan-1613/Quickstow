@@ -35,15 +35,18 @@ def save_data(data):
 @eel.expose
 def Load():
     data = {}
-    with open('saved_paths.pickle', 'rb') as file:
-        while True:
-            try:
-                results = pickle.load(file)
-            except EOFError:
-                break
-            else:
-                data.update(results)
-    return (data)
+    try:
+    	with open('saved_paths.pickle', 'rb') as file:
+        	while True:
+           		try:
+                		results = pickle.load(file)
+            		except EOFError:
+                		break
+            		else:
+                		data.update(results)
+    		return (data)
+    except:
+		print ("Error finding the data file")
 
 @eel.expose
 def path_is_valid(path):
@@ -52,4 +55,4 @@ def path_is_valid(path):
 
 print("Starting eel...")
 # Start the window with UI 
-eel.start("ui.html", size=(500, 500), port=(8000))
+eel.start("ui.html", size=(500, 500), port=(8080))
