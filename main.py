@@ -52,4 +52,4 @@ def path_is_valid(path):
 
 print("Starting eel...")
 # Start the window with UI 
-eel.start("ui.html", size=(500, 500), port=(8081))
+eel.start("ui.html", size=(500, 500), port=(8000))
