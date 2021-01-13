@@ -14,7 +14,7 @@ pip install requirements.txt
 
 python main.py
 
-
+- - -
 The interface opens with a chromium tab , so make sure you have it installed.
 
 
