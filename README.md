@@ -8,7 +8,7 @@ Hayk Baghdasaryan [haykbaghdasaryan10@gmail.com]
 # How to Use
 The program does not have an .exe version of it yet, so you have to run it by typing this commands in terminal:
 
-cd Quickstow (or whatever the folder is named)
+cd Quickstow
 
 ./App
 
