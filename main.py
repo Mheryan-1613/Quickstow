@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import eel
+import eeldsa
 import shutil
 import pickle
 import os.path
